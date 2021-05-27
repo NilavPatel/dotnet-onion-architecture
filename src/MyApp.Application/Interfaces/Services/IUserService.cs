@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
-using MyApp.Domain.Models;
+using MyApp.Application.Models.Requests;
+using MyApp.Application.Models.Responses;
 
 namespace MyApp.Application.Interfaces.Services
 {
     public interface IUserService
     {
-        Task<User> CreateUser(User user);
+        Task<CreateUserRes> CreateUser(CreateUserReq user);
     }
 }

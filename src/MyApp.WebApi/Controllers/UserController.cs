@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Application.Interfaces.Services;
-using MyApp.Domain.Models;
+using MyApp.Application.Models.Requests;
+using MyApp.Application.Models.Responses;
 
 namespace MyApp.WebApi.Controllers
 {
@@ -17,7 +18,7 @@ namespace MyApp.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(User user)
+        public async Task<ActionResult<CreateUserRes>> CreateUser(CreateUserReq user)
         {
             var result = await _userService.CreateUser(user);
             return Ok(result);

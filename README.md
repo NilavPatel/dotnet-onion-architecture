@@ -6,7 +6,7 @@ This layer is not depended on any layer. This layer contains entities.
 
 ## Application Layer.
 
-This layer contains business logic and other interfaces (For repository and third party libraries).
+This layer contains business logic , services, service interfaces, repository interfaces, other third party libraries interfaces, request and response models.
 
 ## Infrastructure Layer.
 
