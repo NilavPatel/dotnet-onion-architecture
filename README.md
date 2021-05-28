@@ -1,18 +1,18 @@
 # Dotnet Onion Architecture / Clean Architecture
 
-## Domain Layer.
+### Domain Layer:
 
 This layer is not depended on any layer. This layer contains entities.
 
-## Application Layer.
+### Application Layer:
 
 This layer contains business logic , services, service interfaces, repository interfaces, other third party libraries interfaces, request and response models.
 
-## Infrastructure Layer.
+### Infrastructure Layer:
 
 This layer contains database related logic (Repositories and DbContext), and third party libraries implementation (like logger and email service).
 
-## Presentation Layer
+### Presentation Layer:
 
 This layer contains Webapi or UI.
 
