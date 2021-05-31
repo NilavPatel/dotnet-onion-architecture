@@ -3,7 +3,7 @@ using MyApp.Domain.Models;
 
 namespace MyApp.Application.Models.Responses
 {
-    public class GetAllUsers
+    public class GetAllUsersRes
     {
         public IEnumerable<User> Data { get; set; }
     }

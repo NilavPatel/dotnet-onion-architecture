@@ -4,6 +4,9 @@ using MyApp.Application.Interfaces.Services;
 using MyApp.Domain.Models;
 using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
+using System;
+using MyApp.Application.Specifications;
+using System.Linq;
 
 namespace MyApp.Application.Services
 {
@@ -30,10 +33,21 @@ namespace MyApp.Application.Services
             return new CreateUserRes() { Id = user.Id };
         }
 
-        public async Task<GetAllUsers> GetAllUsers()
+        public async Task<GetAllUsersRes> GetAllUsers()
         {
             var data = await _userRepository.ListAllAsync();
-            return new GetAllUsers() { Data = data };
+            return new GetAllUsersRes() { Data = data };
+        }
+
+        public async Task<GetUserByIdRes> GetUserById(Guid id)
+        {
+            var getByIdSpec = UserSpecifications.GetById(id);
+            var users = await _userRepository.ListAsync(getByIdSpec);
+            if (users.Any())
+            {
+                return new GetUserByIdRes() { Data = users.FirstOrDefault() };
+            }
+            return new GetUserByIdRes();
         }
     }
 }
