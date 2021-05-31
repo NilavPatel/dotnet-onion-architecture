@@ -7,7 +7,7 @@ using MyApp.Application.Models.Responses;
 namespace MyApp.WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]/[action]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -21,6 +21,13 @@ namespace MyApp.WebApi.Controllers
         public async Task<ActionResult<CreateUserRes>> CreateUser(CreateUserReq user)
         {
             var result = await _userService.CreateUser(user);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CreateUserRes>> GetAllUsers()
+        {
+            var result = await _userService.GetAllUsers();
             return Ok(result);
         }
     }

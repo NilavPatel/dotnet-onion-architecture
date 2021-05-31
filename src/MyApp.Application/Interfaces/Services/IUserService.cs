@@ -7,5 +7,6 @@ namespace MyApp.Application.Interfaces.Services
     public interface IUserService
     {
         Task<CreateUserRes> CreateUser(CreateUserReq user);
+        Task<GetAllUsers> GetAllUsers();
     }
 }

@@ -27,7 +27,13 @@ namespace MyApp.Application.Services
                 EmailId = userReq.EmailId,
                 Password = userReq.Password
             });
-            return new CreateUserRes { Id = user.Id };
+            return new CreateUserRes() { Id = user.Id };
+        }
+
+        public async Task<GetAllUsers> GetAllUsers()
+        {
+            var data = await _userRepository.ListAllAsync();
+            return new GetAllUsers() { Data = data };
         }
     }
 }
