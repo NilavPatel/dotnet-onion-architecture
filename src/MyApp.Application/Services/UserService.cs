@@ -6,7 +6,6 @@ using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 using System;
 using MyApp.Application.Specifications;
-using System.Linq;
 
 namespace MyApp.Application.Services
 {
@@ -42,10 +41,10 @@ namespace MyApp.Application.Services
         public async Task<GetUserByIdRes> GetUserById(Guid id)
         {
             var getByIdSpec = UserSpecifications.GetById(id);
-            var users = await _userRepository.ListAsync(getByIdSpec);
-            if (users.Any())
+            var user = await _userRepository.FirstOrDefaultAsync(getByIdSpec);
+            if (user != null)
             {
-                return new GetUserByIdRes() { Data = users.FirstOrDefault() };
+                return new GetUserByIdRes() { Data = user };
             }
             return new GetUserByIdRes();
         }
