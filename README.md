@@ -7,11 +7,11 @@
 
 ### Domain Layer:
 
-This layer is not dependent on any layer. This layer contains entities, enums, etc. related to the domain.
+This layer is not dependent on any layer. This layer contains entities, enums, specifications etc. related to the domain.  
 
 ### Application Layer:
 
-This layer contains business logic, services, service interfaces, repository interfaces, other third party library interfaces, request and response models. This layer is dependent on domain layer only.
+This layer contains business logic, services, service interfaces, repository interfaces, other third party library interfaces, request and response models. This layer is dependent on domain layer only.  
 
 ### Infrastructure Layer:
 

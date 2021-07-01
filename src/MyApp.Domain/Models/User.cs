@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MyApp.Domain.Core;
 
 namespace MyApp.Domain.Models
 {

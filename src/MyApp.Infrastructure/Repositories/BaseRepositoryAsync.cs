@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
-using MyApp.Domain.Core;
+using MyApp.Domain.Models;
 using MyApp.Application.Interfaces.Repositories;
 using MyApp.Infrastructure.Data;
-using MyApp.Application.Interfaces;
+using MyApp.Domain.Specifications;
 
 namespace MyApp.Infrastructure.Repositories
 {

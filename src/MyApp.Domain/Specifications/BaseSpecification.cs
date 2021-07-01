@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using MyApp.Application.Interfaces;
 
-namespace MyApp.Application.Specifications
+namespace MyApp.Domain.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {

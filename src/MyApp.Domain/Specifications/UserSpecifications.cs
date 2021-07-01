@@ -1,7 +1,7 @@
 using System;
 using MyApp.Domain.Models;
 
-namespace MyApp.Application.Specifications
+namespace MyApp.Domain.Specifications
 {
     public static class UserSpecifications
     {

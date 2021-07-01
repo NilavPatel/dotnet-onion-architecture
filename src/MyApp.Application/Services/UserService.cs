@@ -5,7 +5,7 @@ using MyApp.Domain.Models;
 using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 using System;
-using MyApp.Application.Specifications;
+using MyApp.Domain.Specifications;
 
 namespace MyApp.Application.Services
 {

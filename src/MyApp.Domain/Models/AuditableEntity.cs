@@ -1,6 +1,6 @@
 using System;
 
-namespace MyApp.Domain.Core
+namespace MyApp.Domain.Models
 {
     public class AuditableEntity : BaseEntity
     {

@@ -47,7 +47,6 @@ namespace MyApp.Infrastructure.Services
                         smtpClient.EnableSsl = Convert.ToBoolean(_config.GetSection("Smtp:EnableSsl").Value);
                     }
 
-
                     using (var mailMessage = new MailMessage())
                     {
                         // From
