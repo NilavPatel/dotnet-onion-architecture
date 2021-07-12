@@ -13,8 +13,8 @@ namespace MyApp.Application.Interfaces.Repositories
         Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
         Task<T> FirstOrDefaultAsync(ISpecification<T> spec);
         Task<T> AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        void Update(T entity);
+        void Delete(T entity);
         Task<int> CountAsync(ISpecification<T> spec);
     }
 }

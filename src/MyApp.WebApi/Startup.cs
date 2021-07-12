@@ -26,7 +26,7 @@ namespace MyApp.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connString = this.Configuration.GetConnectionString("DefaultConnection");
+            string connString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<MyAppDbContext>(options => options.UseSqlServer(connString));
 
             services.AddControllers();
@@ -36,6 +36,7 @@ namespace MyApp.WebApi
             });
 
             services.AddScoped(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ILoggerService, LoggerService>();
             services.AddScoped<IUserService, UserService>();

@@ -27,23 +27,23 @@ namespace MyApp.Application.Models
 
         public MailAttachment(byte[] data, string filename)
         {
-            this._stream = new MemoryStream(data);
-            this._filename = filename;
-            this._mediaType = MediaTypeNames.Application.Octet;
+            _stream = new MemoryStream(data);
+            _filename = filename;
+            _mediaType = MediaTypeNames.Application.Octet;
         }
 
         public MailAttachment(string data, string filename)
         {
-            this._stream = new MemoryStream(System.Text.Encoding.ASCII.GetBytes(data));
-            this._filename = filename;
-            this._mediaType = MediaTypeNames.Text.Html;
+            _stream = new MemoryStream(System.Text.Encoding.ASCII.GetBytes(data));
+            _filename = filename;
+            _mediaType = MediaTypeNames.Text.Html;
         }
 
         public MailAttachment(Stream stream, string filename)
         {
-            this._stream = stream;
-            this._filename = filename;
-            this._mediaType = MediaTypeNames.Text.Html;
+            _stream = stream;
+            _filename = filename;
+            _mediaType = MediaTypeNames.Text.Html;
         }
 
         #endregion

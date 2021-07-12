@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
+using Microsoft.EntityFrameworkCore;
 using MyApp.Domain.Models;
 using MyApp.Application.Interfaces.Repositories;
 using MyApp.Infrastructure.Data;
@@ -46,22 +46,18 @@ namespace MyApp.Infrastructure.Repositories
 
         public async Task<T> AddAsync(T entity)
         {
-            _dbContext.Set<T>().Add(entity);
-            await _dbContext.SaveChangesAsync();
-
+            await _dbContext.Set<T>().AddAsync(entity);
             return entity;
         }
 
-        public async Task UpdateAsync(T entity)
+        public void Update(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
-            await _dbContext.SaveChangesAsync();
+            _dbContext.Set<T>().Update(entity);
         }
 
-        public async Task DeleteAsync(T entity)
+        public void Delete(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
         }
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
