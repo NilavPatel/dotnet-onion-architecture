@@ -1,9 +1,9 @@
-using System;
+using MyApp.Domain.Models;
 
 namespace MyApp.Application.Models.Responses
 {
     public class CreateUserRes
     {
-        public Guid Id { get; set; }
+        public User Data { get; set; }
     }
 }

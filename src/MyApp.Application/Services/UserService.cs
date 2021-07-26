@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using MyApp.Application.Interfaces.Repositories;
 using MyApp.Application.Interfaces.Services;
@@ -20,42 +19,39 @@ namespace MyApp.Application.Services
             _loggerService = loggerService;
         }
 
-        public async Task<CreateUserRes> CreateUser(CreateUserReq userReq)
+        public async Task<CreateUserRes> CreateUser(CreateUserReq req)
         {
             await using (_unitOfWork)
             {
                 var user = await _unitOfWork.Repository<User>().AddAsync(new User
                 {
-                    FirstName = userReq.FirstName,
-                    LastName = userReq.LastName,
-                    EmailId = userReq.EmailId,
-                    Password = userReq.Password
+                    FirstName = req.FirstName,
+                    LastName = req.LastName,
+                    EmailId = req.EmailId,
+                    Password = req.Password,
+                    IsActive = false
                 });
                 await _unitOfWork.SaveChangesAsync();
-                return new CreateUserRes() { Id = user.Id };
+                return new CreateUserRes() { Data = user };
             }
         }
 
-        public async Task<GetAllUsersRes> GetAllUsers()
+        public async Task<ValidateUserRes> ValidateUser(ValidateUserReq req)
         {
             await using (_unitOfWork)
             {
-                var data = await _unitOfWork.Repository<User>().ListAllAsync();
-                return new GetAllUsersRes() { Data = data };
-            }
-        }
-
-        public async Task<GetUserByIdRes> GetUserById(Guid id)
-        {
-            await using (_unitOfWork)
-            {
-                var getByIdSpec = UserSpecifications.GetById(id);
-                var user = await _unitOfWork.Repository<User>().FirstOrDefaultAsync(getByIdSpec);
-                if (user != null)
+                var validateUserSpec = UserSpecifications.ValidateUser(req.EmailId, req.Password);
+                var user = await _unitOfWork.Repository<User>().FirstOrDefaultAsync(validateUserSpec);
+                if (user == null)
                 {
-                    return new GetUserByIdRes() { Data = user };
+                    return null;
                 }
-                return new GetUserByIdRes();
+                return new ValidateUserRes()
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName
+                };
             }
         }
     }

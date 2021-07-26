@@ -2,16 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyApp.Application.Models.Requests
 {
-    public class CreateUserReq
+    public class ValidateUserReq
     {
-        [Required]
-        [MaxLength(50)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string LastName { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string EmailId { get; set; }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Application.Interfaces.Services;
 using MyApp.Application.Models.Requests;
@@ -25,17 +24,10 @@ namespace MyApp.WebApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<GetAllUsersRes>> GetAllUsers()
+        [HttpPost]
+        public async Task<ActionResult<ValidateUserRes>> ValidateUser(ValidateUserReq req)
         {
-            var result = await _userService.GetAllUsers();
-            return Ok(result);
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<GetUserByIdRes>> GetUserById(Guid id)
-        {
-            var result = await _userService.GetUserById(id);
+            var result = await _userService.ValidateUser(req);
             return Ok(result);
         }
     }
