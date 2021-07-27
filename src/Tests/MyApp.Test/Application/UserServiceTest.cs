@@ -2,6 +2,7 @@ using Xunit;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Application.Services;
 using MyApp.Application.Models.Requests;
+using MyApp.Application.Models.Responses;
 using MyApp.Infrastructure.Data;
 using MyApp.Infrastructure.Repositories;
 using MyApp.Test.Infrastructure;
@@ -10,15 +11,16 @@ namespace MyApp.Test.Service
 {
     public class UserServiceTest
     {
-        private MyAppDbContext myAppDbContext;
-        private UnitOfWork unitOfWork;
-        private UserService userService;
+        private MyAppDbContext _myAppDbContext;
+        private UnitOfWork _unitOfWork;
+        private UserService _userService;
+
         public UserServiceTest()
         {
             var options = new DbContextOptionsBuilder<MyAppDbContext>().UseInMemoryDatabase(databaseName: "MyAppDb").Options;
-            myAppDbContext = new MyAppDbContext(options);
-            unitOfWork = new UnitOfWork(myAppDbContext);
-            userService = new UserService(unitOfWork, new FakeLoggerService());
+            _myAppDbContext = new MyAppDbContext(options);
+            _unitOfWork = new UnitOfWork(_myAppDbContext);
+            _userService = new UserService(_unitOfWork, new FakeLoggerService());
         }
 
         [Fact]
@@ -34,10 +36,12 @@ namespace MyApp.Test.Service
             };
 
             //When
-            var result = await userService.CreateUser(req);
+            var result = await _userService.CreateUser(req);
 
             //Then
             Assert.NotNull(result);
+            Assert.Equal(typeof(CreateUserRes), result.GetType());
+            Assert.NotNull(result.Data);
         }
     }
 }

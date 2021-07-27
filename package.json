@@ -6,9 +6,9 @@
     "start:MyApp.WebApi": "dotnet run --project src/MyApp.WebApi/MyApp.WebApi.csproj",
     "build:MyApp.WebApi": "dotnet build src/MyApp.WebApi/MyApp.WebApi.csproj",
     "publish:MyApp.WebApi": "dotnet publish src/MyApp.WebApi/MyApp.WebApi.csproj",
-    "clean": "dotnet clean src/MyApp.sln",
-    "restore": "dotnet restore src/MyApp.sln",
+    "clean:MyApp.sln": "dotnet clean src/MyApp.sln",
+    "restore:MyApp.sln": "dotnet restore src/MyApp.sln",
     "build:MyApp.Test": "dotnet build src/Tests/MyApp.Test/MyApp.Test.csproj",
-    "test": "dotnet test src/Tests/MyApp.Test/MyApp.Test.csproj"
+    "test:MyApp.Test": "dotnet test src/Tests/MyApp.Test/MyApp.Test.csproj"
   }
 }

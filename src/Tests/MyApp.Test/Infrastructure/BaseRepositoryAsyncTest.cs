@@ -9,13 +9,14 @@ namespace MyApp.Test.Infrastructure
 {
     public class BaseRepositoryAsyncTest
     {
-        private MyAppDbContext myAppDbContext;
-        private UnitOfWork unitOfWork;
+        private MyAppDbContext _myAppDbContext;
+        private UnitOfWork _unitOfWork;
+        
         public BaseRepositoryAsyncTest()
         {
             var options = new DbContextOptionsBuilder<MyAppDbContext>().UseInMemoryDatabase(databaseName: "MyAppDb").Options;
-            myAppDbContext = new MyAppDbContext(options);
-            unitOfWork = new UnitOfWork(myAppDbContext);
+            _myAppDbContext = new MyAppDbContext(options);
+            _unitOfWork = new UnitOfWork(_myAppDbContext);
         }
 
         [Fact]
@@ -32,11 +33,11 @@ namespace MyApp.Test.Infrastructure
             };
 
             //When
-            var result = await unitOfWork.Repository<User>().AddAsync(user);
-            await unitOfWork.SaveChangesAsync();
+            var result = await _unitOfWork.Repository<User>().AddAsync(user);
+            await _unitOfWork.SaveChangesAsync();
 
             //Then
-            Assert.Equal(result, myAppDbContext.Users.Find(result.Id));
+            Assert.Equal(result, _myAppDbContext.Users.Find(result.Id));
         }
     }
 }

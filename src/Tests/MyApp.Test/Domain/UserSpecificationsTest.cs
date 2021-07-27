@@ -43,10 +43,10 @@ namespace MyApp.Test.Domain
             
             //When
             var spec = UserSpecifications.ValidateUser("nilavpatel1992@gmail.com", "Test123");
-            var result = users.AsQueryable().Where(spec.Criteria).Count();
+            var count = users.AsQueryable().Where(spec.Criteria).Count();
 
             //Then
-            Assert.Equal(1, result);
+            Assert.Equal(1, count);
         }
     }
 }
