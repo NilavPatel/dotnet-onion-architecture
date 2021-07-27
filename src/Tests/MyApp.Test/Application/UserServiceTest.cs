@@ -11,14 +11,13 @@ namespace MyApp.Test.Service
 {
     public class UserServiceTest
     {
-        private MyAppDbContext _myAppDbContext;
         private UnitOfWork _unitOfWork;
         private UserService _userService;
 
         public UserServiceTest()
         {
             var options = new DbContextOptionsBuilder<MyAppDbContext>().UseInMemoryDatabase(databaseName: "MyAppDb").Options;
-            _myAppDbContext = new MyAppDbContext(options);
+            var _myAppDbContext = new MyAppDbContext(options);
             _unitOfWork = new UnitOfWork(_myAppDbContext);
             _userService = new UserService(_unitOfWork, new FakeLoggerService());
         }

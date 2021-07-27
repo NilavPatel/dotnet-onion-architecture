@@ -5,6 +5,8 @@
 - The core of the application is the domain layer.
 - Provide more testability than N-layered architecture.
 
+<img src="https://raw.githubusercontent.com/NilavPatel/dotnet-onion-architecture/main/docs/dotnet-onion-architecture.png" style="padding:10px">
+
 ### Domain Layer:
 
 This layer is not dependent on any layer. This layer contains entities, enums, specifications etc. related to the domain.  
@@ -19,9 +21,7 @@ This layer contains database related logic (Repositories and DbContext), and thi
 
 ### Presentation Layer:
 
-This layer contains Webapi or UI.
-
-<img src="https://raw.githubusercontent.com/NilavPatel/dotnet-onion-architecture/main/docs/dotnet-onion-architecture.png" style="padding:10px">
+This layer contains Webapi or UI.  
 
 ### Technology:
 

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Domain.Specifications;
 using MyApp.Domain.Models;
+using MyApp.Infrastructure.Repositories;
 
 namespace MyApp.Test.Domain
 {
@@ -40,10 +41,10 @@ namespace MyApp.Test.Domain
                     IsActive = false
                 }
             };
-            
+
             //When
             var spec = UserSpecifications.ValidateUser("nilavpatel1992@gmail.com", "Test123");
-            var count = users.AsQueryable().Where(spec.Criteria).Count();
+            var count = SpecificationEvaluator<User>.GetQuery(users.AsQueryable(), spec).Count();
 
             //Then
             Assert.Equal(1, count);
