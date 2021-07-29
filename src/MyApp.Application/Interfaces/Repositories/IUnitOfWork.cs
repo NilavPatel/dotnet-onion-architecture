@@ -6,7 +6,7 @@ namespace MyApp.Application.Interfaces.Repositories
 {
     public interface IUnitOfWork: IAsyncDisposable
     {
-        Task SaveChangesAsync();
+        Task<int> SaveChangesAsync();
         IBaseRepositoryAsync<T> Repository<T>() where T : BaseEntity;
     }
 }

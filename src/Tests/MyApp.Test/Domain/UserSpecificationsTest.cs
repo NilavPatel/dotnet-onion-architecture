@@ -11,11 +11,10 @@ namespace MyApp.Test.Domain
 {
     public class UserSpecificationsTest
     {
-        [Fact]
-        public void ValidateUser_WithValidData_ReturnValidData()
+        private List<User> _users;
+        public UserSpecificationsTest()
         {
-            //Given
-            List<User> users = new List<User>{
+            _users = new List<User>{
                 new User
                 {
                     FirstName = "Nilav",
@@ -41,10 +40,16 @@ namespace MyApp.Test.Domain
                     IsActive = false
                 }
             };
+        }
+
+        [Fact]
+        public void ValidateUser_WithValidData_ReturnValidData()
+        {
+            //Given
+            var spec = UserSpecifications.ValidateUser("nilavpatel1992@gmail.com", "Test123");
 
             //When
-            var spec = UserSpecifications.ValidateUser("nilavpatel1992@gmail.com", "Test123");
-            var count = SpecificationEvaluator<User>.GetQuery(users.AsQueryable(), spec).Count();
+            var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
 
             //Then
             Assert.Equal(1, count);

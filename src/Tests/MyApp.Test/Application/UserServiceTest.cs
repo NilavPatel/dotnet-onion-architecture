@@ -1,46 +1,57 @@
+using System;
 using Xunit;
-using Microsoft.EntityFrameworkCore;
+using Moq;
+using System.Threading.Tasks;
 using MyApp.Application.Services;
 using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
-using MyApp.Infrastructure.Data;
-using MyApp.Infrastructure.Repositories;
-using MyApp.Test.Infrastructure;
+using MyApp.Application.Interfaces.Repositories;
+using MyApp.Application.Interfaces.Services;
+using MyApp.Domain.Models;
 
 namespace MyApp.Test.Service
 {
     public class UserServiceTest
     {
-        private UnitOfWork _unitOfWork;
+        private Mock<IUnitOfWork> _unitOfWorkMock = new Mock<IUnitOfWork>();
+        private Mock<ILoggerService> _loggerMock = new Mock<ILoggerService>();
         private UserService _userService;
 
         public UserServiceTest()
         {
-            var options = new DbContextOptionsBuilder<MyAppDbContext>().UseInMemoryDatabase(databaseName: "MyAppDb").Options;
-            var _myAppDbContext = new MyAppDbContext(options);
-            _unitOfWork = new UnitOfWork(_myAppDbContext);
-            _userService = new UserService(_unitOfWork, new FakeLoggerService());
+            _userService = new UserService(_unitOfWorkMock.Object, _loggerMock.Object);
         }
 
         [Fact]
         public async void CreateUser_WithValidData_SuccessfullyCreateUser()
         {
             //Given
-            var req = new CreateUserReq
+            var id = Guid.NewGuid();
+            _unitOfWorkMock.Setup(x => x.Repository<User>().AddAsync(It.IsAny<User>()))
+            .ReturnsAsync(new User
+            {
+                Id = id,
+                FirstName = "Nilav",
+                LastName = "Patel",
+                EmailId = "nilavpatel1992@gmail.com",
+                Password = "Test123",
+                IsActive = false
+            });
+            _unitOfWorkMock.Setup(x => x.SaveChangesAsync()).ReturnsAsync(1);
+
+            //When
+            var result = await _userService.CreateUser(new CreateUserReq
             {
                 FirstName = "Nilav",
                 LastName = "Patel",
                 EmailId = "nilavpatel1992@gmail.com",
-                Password = "Test123"
-            };
-
-            //When
-            var result = await _userService.CreateUser(req);
+                Password = "Test123",
+            });
 
             //Then
             Assert.NotNull(result);
-            Assert.Equal(typeof(CreateUserRes), result.GetType());
             Assert.NotNull(result.Data);
+            Assert.Equal(id, result.Data.Id);
         }
     }
 }

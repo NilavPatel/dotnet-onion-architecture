@@ -23,9 +23,11 @@ This layer contains database related logic (Repositories and DbContext), and thi
 
 This layer contains Webapi or UI.  
 
-### Technology:
+### Technologies:
 
 - Asp.Net Core
 - Entity Framework Core
 - NLog
 - Swagger
+- Xunit
+- Moq

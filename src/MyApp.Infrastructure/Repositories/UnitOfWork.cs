@@ -33,9 +33,9 @@ namespace MyApp.Infrastructure.Repositories
             return repository;
         }
 
-        public async Task SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
-            await _dbContext.SaveChangesAsync();
+            return await _dbContext.SaveChangesAsync();
         }
 
         public async ValueTask DisposeAsync()
