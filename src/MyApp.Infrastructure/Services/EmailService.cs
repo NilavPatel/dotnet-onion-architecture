@@ -2,28 +2,28 @@ using Microsoft.Extensions.Configuration;
 using MyApp.Application.Interfaces.Services;
 using MyApp.Application.Models;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 
 namespace MyApp.Infrastructure.Services
 {
     public class EmailService : IEmailService
     {
         private readonly IConfiguration _config;
+        private readonly ILoggerService _loggerService;
 
-        public EmailService(IConfiguration config)
+        public EmailService(IConfiguration config, ILoggerService loggerService)
         {
             _config = config;
+            _loggerService = loggerService;
         }
 
-        public void SendEmail(string fromAddress, string toAddresses, string ccAddresses, string bccAddresses, string subject, string body, IList<MailAttachment> attachments)
+        public void SendEmail(Email email)
         {
             try
             {
                 // from and to addresses are required
-                if (string.IsNullOrWhiteSpace(fromAddress) || string.IsNullOrWhiteSpace(toAddresses))
+                if (string.IsNullOrWhiteSpace(email.From) || string.IsNullOrWhiteSpace(email.To))
                 {
                     return;
                 }
@@ -50,19 +50,19 @@ namespace MyApp.Infrastructure.Services
                     using (var mailMessage = new MailMessage())
                     {
                         // From
-                        mailMessage.From = new MailAddress(fromAddress);
+                        mailMessage.From = new MailAddress(email.From);
 
                         // Tos
-                        var toMailAddresses = toAddresses.Split(';');
+                        var toMailAddresses = email.To.Split(';');
                         foreach (var mailAddress in toMailAddresses)
                         {
                             mailMessage.To.Add(mailAddress);
                         }
 
                         // CCs
-                        if (!string.IsNullOrWhiteSpace(ccAddresses))
+                        if (!string.IsNullOrWhiteSpace(email.Cc))
                         {
-                            var ccMailAddresses = ccAddresses.Split(';');
+                            var ccMailAddresses = email.Cc.Split(';');
                             foreach (var mailAddress in ccMailAddresses)
                             {
                                 mailMessage.CC.Add(mailAddress);
@@ -70,23 +70,23 @@ namespace MyApp.Infrastructure.Services
                         }
 
                         // BCCs
-                        if (!string.IsNullOrWhiteSpace(bccAddresses))
+                        if (!string.IsNullOrWhiteSpace(email.Bcc))
                         {
-                            var bccMailAddresses = bccAddresses.Split(';');
+                            var bccMailAddresses = email.Bcc.Split(';');
                             foreach (var mailAddress in bccMailAddresses)
                             {
                                 mailMessage.Bcc.Add(mailAddress);
                             }
                         }
 
-                        mailMessage.Subject = subject;
-                        mailMessage.Body = body;
+                        mailMessage.Subject = email.Subject;
+                        mailMessage.Body = email.Body;
                         mailMessage.IsBodyHtml = true;
 
                         // Attachments
-                        if (attachments != null && attachments.Count > 0)
+                        if (email.Attachments != null && email.Attachments.Count > 0)
                         {
-                            foreach (var attchment in attachments)
+                            foreach (var attchment in email.Attachments)
                             {
                                 mailMessage.Attachments.Add(attchment.File);
                             }
@@ -96,13 +96,9 @@ namespace MyApp.Infrastructure.Services
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                var sb = new StringBuilder();
-                sb.Append("\nFrom:" + fromAddress);
-                sb.Append("\nTo:" + toAddresses);
-                sb.Append("\nbody:" + body);
-                sb.Append("\nsubject:" + subject);
+                _loggerService.LogException(ex);
             }
         }
     }
