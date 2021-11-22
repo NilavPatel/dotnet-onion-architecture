@@ -27,10 +27,11 @@ namespace MyApp.Infrastructure.Repositories
                 return _repositories[entityType];
             }
 
-            //TODO: Need to find a way to use dependency injection with passing existing dbcontext object
-            var repository = new BaseRepositoryAsync<T>(_dbContext);
+            var repositoryType = typeof(BaseRepositoryAsync<>);
+            var repository = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _dbContext);
+
             _repositories.Add(entityType, repository);
-            return repository;
+            return (IBaseRepositoryAsync<T>)repository;
         }
 
         public async Task<int> SaveChangesAsync()
