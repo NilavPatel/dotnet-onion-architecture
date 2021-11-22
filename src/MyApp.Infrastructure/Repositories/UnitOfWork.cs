@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MyApp.Application.Interfaces.Repositories;
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 using MyApp.Infrastructure.Data;
 
 namespace MyApp.Infrastructure.Repositories
@@ -36,6 +36,11 @@ namespace MyApp.Infrastructure.Repositories
         public async Task<int> SaveChangesAsync()
         {
             return await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task RollBackChangesAsync()
+        {
+            await _dbContext.Database.RollbackTransactionAsync();
         }
 
         public async ValueTask DisposeAsync()

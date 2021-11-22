@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 using MyApp.Domain.Specifications;
 
 namespace MyApp.Application.Interfaces.Repositories

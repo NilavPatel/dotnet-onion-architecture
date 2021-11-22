@@ -4,7 +4,7 @@ using MyApp.Application.Interfaces.Services;
 using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 using MyApp.Domain.Specifications;
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 
 namespace MyApp.Application.Services
 {
@@ -40,7 +40,7 @@ namespace MyApp.Application.Services
         {
             await using (_unitOfWork)
             {
-                var validateUserSpec = UserSpecifications.ValidateUser(req.EmailId, req.Password);
+                var validateUserSpec = UserSpecifications.UserByEmailAndPasswordSpec(req.EmailId, req.Password);
                 var user = await _unitOfWork.Repository<User>().FirstOrDefaultAsync(validateUserSpec);
                 if (user == null)
                 {

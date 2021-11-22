@@ -4,11 +4,10 @@
   "version": "1.0.0",
   "scripts": {
     "start:MyApp.WebApi": "dotnet run --project src/MyApp.WebApi/MyApp.WebApi.csproj",
-    "build:MyApp.WebApi": "dotnet build src/MyApp.WebApi/MyApp.WebApi.csproj",
     "publish:MyApp.WebApi": "dotnet publish src/MyApp.WebApi/MyApp.WebApi.csproj",
-    "clean:MyApp.sln": "dotnet clean src/MyApp.sln",
-    "restore:MyApp.sln": "dotnet restore src/MyApp.sln",
-    "build:MyApp.Test": "dotnet build src/Tests/MyApp.Test/MyApp.Test.csproj",
-    "test:MyApp.Test": "dotnet test src/Tests/MyApp.Test/MyApp.Test.csproj"
+    "clean:All": "dotnet clean src/MyApp.sln",
+    "restore:All": "dotnet restore src/MyApp.sln",
+    "build:All": "dotnet build src/MyApp.sln",
+    "test:All": "dotnet test src/MyApp.sln"
   }
 }

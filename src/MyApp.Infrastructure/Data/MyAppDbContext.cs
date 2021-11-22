@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 
 namespace MyApp.Infrastructure.Data
 {

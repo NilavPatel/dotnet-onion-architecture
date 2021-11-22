@@ -1,4 +1,4 @@
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 
 namespace MyApp.Application.Models.Responses
 {

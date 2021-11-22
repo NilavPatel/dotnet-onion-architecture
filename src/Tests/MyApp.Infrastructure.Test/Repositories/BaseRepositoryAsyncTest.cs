@@ -3,9 +3,9 @@ using Xunit;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Infrastructure.Data;
 using MyApp.Infrastructure.Repositories;
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 
-namespace MyApp.Test.Infrastructure
+namespace MyApp.Infrastructure.Test.Repositories
 {
     public class BaseRepositoryAsyncTest
     {

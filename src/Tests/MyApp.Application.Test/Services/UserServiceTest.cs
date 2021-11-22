@@ -7,9 +7,9 @@ using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 using MyApp.Application.Interfaces.Repositories;
 using MyApp.Application.Interfaces.Services;
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 
-namespace MyApp.Test.Service
+namespace MyApp.Application.Test.Services
 {
     public class UserServiceTest
     {

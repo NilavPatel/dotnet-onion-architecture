@@ -2,12 +2,11 @@ using Xunit;
 using System.Linq;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 using MyApp.Domain.Specifications;
-using MyApp.Domain.Models;
+using MyApp.Domain.Entities;
 using MyApp.Infrastructure.Repositories;
 
-namespace MyApp.Test.Domain
+namespace MyApp.Domain.Test.Specifications
 {
     public class UserSpecificationsTest
     {
@@ -43,10 +42,10 @@ namespace MyApp.Test.Domain
         }
 
         [Fact]
-        public void ValidateUser_WithValidData_ReturnValidData()
+        public void UserByEmailAndPasswordSpec_WithValidData_ReturnValidData()
         {
             //Given
-            var spec = UserSpecifications.ValidateUser("nilavpatel1992@gmail.com", "Test123");
+            var spec = UserSpecifications.UserByEmailAndPasswordSpec("nilavpatel1992@gmail.com", "Test123");
 
             //When
             var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
