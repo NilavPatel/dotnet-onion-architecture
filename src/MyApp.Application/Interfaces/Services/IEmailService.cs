@@ -1,4 +1,4 @@
-using MyApp.Application.Models;
+using MyApp.Application.Models.Common;
 
 namespace MyApp.Application.Interfaces.Services
 {

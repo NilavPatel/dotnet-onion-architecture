@@ -50,7 +50,7 @@ namespace MyApp.Application.Services
                 {
                     throw new UserNotFoundException();
                 }
-                if (user.Status == UserStatus.InActive)
+                if (user.Status != UserStatus.Active)
                 {
                     throw new UserIsNotActiveException();
                 }

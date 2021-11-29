@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using MyApp.Application.Interfaces.Services;
-using MyApp.Application.Models;
+using MyApp.Application.Models.Common;
 using System;
 using System.Net;
 using System.Net.Mail;
