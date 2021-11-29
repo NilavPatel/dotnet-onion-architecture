@@ -1,9 +1,9 @@
-using MyApp.Domain.Entities;
+using MyApp.Application.Models.DTOs;
 
 namespace MyApp.Application.Models.Responses
 {
     public class CreateUserRes
     {
-        public User Data { get; set; }
+        public UserDTO Data { get; set; }
     }
 }

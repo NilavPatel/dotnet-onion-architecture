@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using MyApp.Domain.Enums;
 
 namespace MyApp.Application.Models.Requests
 {
@@ -19,5 +20,8 @@ namespace MyApp.Application.Models.Requests
         [Required]
         [MaxLength(50)]
         public string Password { get; set; }
+
+        [Required]
+        public UserStatus Status { get; set; }
     }
 }

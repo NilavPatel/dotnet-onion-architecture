@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using MyApp.Domain.Enums;
 
 namespace MyApp.Domain.Entities
 {
@@ -11,6 +12,6 @@ namespace MyApp.Domain.Entities
         public string LastName { get; set; }
         public string EmailId { get; set; }
         public string Password { get; set; }
-        public bool IsActive { get; set; }
+        public UserStatus Status { get; set; }
     }
 }

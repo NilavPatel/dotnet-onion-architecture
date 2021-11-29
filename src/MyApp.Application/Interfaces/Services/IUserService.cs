@@ -9,5 +9,7 @@ namespace MyApp.Application.Interfaces.Services
         Task<CreateUserRes> CreateUser(CreateUserReq req);
 
         Task<ValidateUserRes> ValidateUser(ValidateUserReq req);
+
+        Task<GetAllActiveUsersRes> GetAllActiveUsers();
     }
 }

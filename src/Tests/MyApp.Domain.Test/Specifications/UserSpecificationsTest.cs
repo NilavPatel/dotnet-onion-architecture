@@ -1,10 +1,10 @@
 using Xunit;
 using System.Linq;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using MyApp.Domain.Specifications;
 using MyApp.Domain.Entities;
 using MyApp.Infrastructure.Repositories;
+using MyApp.Domain.Enums;
 
 namespace MyApp.Domain.Test.Specifications
 {
@@ -20,7 +20,7 @@ namespace MyApp.Domain.Test.Specifications
                     LastName = "Patel",
                     EmailId = "nilavpatel1992@gmail.com",
                     Password = "Test123",
-                    IsActive = true
+                    Status = UserStatus.Active
                 },
                 new User
                 {
@@ -28,7 +28,7 @@ namespace MyApp.Domain.Test.Specifications
                     LastName = "Patel",
                     EmailId = "nilav1patel1992@gmail.com",
                     Password = "Test1234",
-                    IsActive = false
+                    Status = UserStatus.InActive
                 },
                 new User
                 {
@@ -36,22 +36,35 @@ namespace MyApp.Domain.Test.Specifications
                     LastName = "Patel",
                     EmailId = "nilav2patel1992@gmail.com",
                     Password = "Test1235",
-                    IsActive = false
+                    Status = UserStatus.Active
                 }
             };
         }
 
         [Fact]
-        public void UserByEmailAndPasswordSpec_WithValidData_ReturnValidData()
+        public void GetUserByEmailAndPasswordSpec_WithValidData_ReturnValidData()
         {
             //Given
-            var spec = UserSpecifications.UserByEmailAndPasswordSpec("nilavpatel1992@gmail.com", "Test123");
+            var spec = UserSpecifications.GetUserByEmailAndPasswordSpec("nilavpatel1992@gmail.com", "Test123");
 
             //When
             var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
 
             //Then
             Assert.Equal(1, count);
+        }
+
+        [Fact]
+        public void GetAllActiveUsersSpec_WithValidData_ReturnValidData()
+        {
+            //Given
+            var spec = UserSpecifications.GetAllActiveUsersSpec();
+
+            //When
+            var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
+
+            //Then
+            Assert.Equal(2, count);
         }
     }
 }

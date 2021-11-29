@@ -5,6 +5,10 @@ using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 using MyApp.Domain.Specifications;
 using MyApp.Domain.Entities;
+using MyApp.Domain.Enums;
+using MyApp.Domain.Exceptions;
+using System.Linq;
+using MyApp.Application.Models.DTOs;
 
 namespace MyApp.Application.Services
 {
@@ -29,10 +33,10 @@ namespace MyApp.Application.Services
                     LastName = req.LastName,
                     EmailId = req.EmailId,
                     Password = req.Password,
-                    IsActive = false
+                    Status = req.Status
                 });
                 await _unitOfWork.SaveChangesAsync();
-                return new CreateUserRes() { Data = user };
+                return new CreateUserRes() { Data = new UserDTO(user) };
             }
         }
 
@@ -40,17 +44,35 @@ namespace MyApp.Application.Services
         {
             await using (_unitOfWork)
             {
-                var validateUserSpec = UserSpecifications.UserByEmailAndPasswordSpec(req.EmailId, req.Password);
+                var validateUserSpec = UserSpecifications.GetUserByEmailAndPasswordSpec(req.EmailId, req.Password);
                 var user = await _unitOfWork.Repository<User>().FirstOrDefaultAsync(validateUserSpec);
                 if (user == null)
                 {
-                    return null;
+                    throw new UserNotFoundException();
+                }
+                if (user.Status == UserStatus.InActive)
+                {
+                    throw new UserIsNotActiveException();
                 }
                 return new ValidateUserRes()
                 {
                     Id = user.Id,
                     FirstName = user.FirstName,
                     LastName = user.LastName
+                };
+            }
+        }
+
+        public async Task<GetAllActiveUsersRes> GetAllActiveUsers()
+        {
+            await using (_unitOfWork)
+            {
+                var activeUsersSpec = UserSpecifications.GetAllActiveUsersSpec();
+                var users = await _unitOfWork.Repository<User>().ListAsync(activeUsersSpec);
+
+                return new GetAllActiveUsersRes()
+                {
+                    Data = users.Select(x => new UserDTO(x)).ToList()
                 };
             }
         }

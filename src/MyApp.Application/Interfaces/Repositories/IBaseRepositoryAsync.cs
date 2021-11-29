@@ -9,8 +9,8 @@ namespace MyApp.Application.Interfaces.Repositories
     public interface IBaseRepositoryAsync<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync(Guid id);
-        Task<IReadOnlyList<T>> ListAllAsync();
-        Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
+        Task<IList<T>> ListAllAsync();
+        Task<IList<T>> ListAsync(ISpecification<T> spec);
         Task<T> FirstOrDefaultAsync(ISpecification<T> spec);
         Task<T> AddAsync(T entity);
         void Update(T entity);

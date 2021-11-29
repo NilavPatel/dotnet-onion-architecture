@@ -24,12 +24,12 @@ namespace MyApp.Infrastructure.Repositories
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<IReadOnlyList<T>> ListAllAsync()
+        public async Task<IList<T>> ListAllAsync()
         {
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
+        public async Task<IList<T>> ListAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).ToListAsync();
         }

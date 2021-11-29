@@ -30,5 +30,12 @@ namespace MyApp.WebApi.Controllers
             var result = await _userService.ValidateUser(req);
             return Ok(result);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<GetAllActiveUsersRes>> GetAllActiveUsers()
+        {
+            var result = await _userService.GetAllActiveUsers();
+            return Ok(result);
+        }
     }
 }

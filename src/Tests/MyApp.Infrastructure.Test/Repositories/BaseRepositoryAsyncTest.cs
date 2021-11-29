@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MyApp.Infrastructure.Data;
 using MyApp.Infrastructure.Repositories;
 using MyApp.Domain.Entities;
+using MyApp.Domain.Enums;
 
 namespace MyApp.Infrastructure.Test.Repositories
 {
@@ -11,7 +12,7 @@ namespace MyApp.Infrastructure.Test.Repositories
     {
         private MyAppDbContext _myAppDbContext;
         private UnitOfWork _unitOfWork;
-        
+
         public BaseRepositoryAsyncTest()
         {
             var options = new DbContextOptionsBuilder<MyAppDbContext>().UseInMemoryDatabase(databaseName: "MyAppDb").Options;
@@ -29,7 +30,7 @@ namespace MyApp.Infrastructure.Test.Repositories
                 LastName = "Patel",
                 EmailId = "nilavpatel1992@gmail.com",
                 Password = "Test123",
-                IsActive = false
+                Status = UserStatus.Active
             };
 
             //When
