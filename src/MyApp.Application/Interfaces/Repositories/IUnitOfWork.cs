@@ -4,7 +4,7 @@ using MyApp.Domain.Entities;
 
 namespace MyApp.Application.Interfaces.Repositories
 {
-    public interface IUnitOfWork: IAsyncDisposable
+    public interface IUnitOfWork
     {
         Task<int> SaveChangesAsync();
         Task RollBackChangesAsync();

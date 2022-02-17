@@ -25,8 +25,8 @@ This layer contains Webapi or UI.
 
 ### Technologies:
 
-- Asp.Net Core
-- Entity Framework Core
+- .net 5
+- Entity Framework
 - NLog
 - Swagger
 - Xunit

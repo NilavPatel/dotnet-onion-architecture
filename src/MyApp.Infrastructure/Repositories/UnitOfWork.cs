@@ -11,7 +11,6 @@ namespace MyApp.Infrastructure.Repositories
     {
         protected readonly MyAppDbContext _dbContext;
         private IDictionary<Type, dynamic> _repositories;
-        private bool _disposed = false;
 
         public UnitOfWork(MyAppDbContext dbContext)
         {
@@ -42,15 +41,6 @@ namespace MyApp.Infrastructure.Repositories
         public async Task RollBackChangesAsync()
         {
             await _dbContext.Database.RollbackTransactionAsync();
-        }
-
-        public async ValueTask DisposeAsync()
-        {
-            if (!_disposed)
-            {
-                await _dbContext.DisposeAsync();
-                _disposed = true;
-            }
         }
     }
 }
