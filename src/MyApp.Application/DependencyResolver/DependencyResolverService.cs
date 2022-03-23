@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using MyApp.Application.Interfaces.Services;
+using MyApp.Application.Interfaces;
 using MyApp.Application.Services;
 
 namespace MyApp.Application.DependencyResolver

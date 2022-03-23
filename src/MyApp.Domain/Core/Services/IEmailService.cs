@@ -1,6 +1,6 @@
-using MyApp.Application.Models.Common;
+using MyApp.Domain.Core.Models;
 
-namespace MyApp.Application.Interfaces.Services
+namespace MyApp.Domain.Core.Services
 {
     public interface IEmailService
     {

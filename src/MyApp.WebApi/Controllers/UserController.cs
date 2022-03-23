@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyApp.Application.Interfaces.Services;
+using MyApp.Application.Interfaces;
 using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 

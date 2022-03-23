@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using MyApp.Domain.Entities;
 using MyApp.Domain.Specifications;
+using MyApp.Domain.Core.Models;
 
 namespace MyApp.Infrastructure.Repositories
 {

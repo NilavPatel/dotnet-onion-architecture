@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MyApp.Application.Models.Common
+namespace MyApp.Domain.Core.Models
 {
     public class Email
     {

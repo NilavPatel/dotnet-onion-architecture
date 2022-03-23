@@ -2,7 +2,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Net.Mime;
 
-namespace MyApp.Application.Models.Common
+namespace MyApp.Domain.Core.Models
 {
     public class MailAttachment
     {

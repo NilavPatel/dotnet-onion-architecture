@@ -1,5 +1,5 @@
 ﻿using System;
-using MyApp.Application.Interfaces.Services;
+using MyApp.Domain.Core.Services;
 using NLog.Web;
 
 namespace MyApp.Infrastructure.Services

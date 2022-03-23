@@ -9,23 +9,26 @@
 
 ### Domain Layer:
 
-This layer is not dependent on any layer. This layer contains entities, enums, specifications etc. related to the domain.  
+This layer is not depend on any other layer. This layer contains entities, enums, specifications etc. related to the domain.
+Also define Interfaces for repositories and third party services in this layer.    
 
 ### Application Layer:
 
-This layer contains business logic, services, service interfaces, repository interfaces, other third party library interfaces, request and response models. This layer is dependent on domain layer only.  
+This layer contains business logic, services, service interfaces, request and response models. This layer is depends on domain layer only.  
 
 ### Infrastructure Layer:
 
-This layer contains database related logic (Repositories and DbContext), and third party library implementation (like a logger and email service). This implementation is based on application layer.
+This layer contains database related logic (Repositories and DbContext), and third party library implementation (like a logger and email service). This implementation is based on domain layer.
 
 ### Presentation Layer:
 
 This layer contains Webapi or UI.  
 
+For more details <a target="_blank" href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice">read</a>
+
 ### Technologies:
 
-- .net 5
+- .Net 5
 - Entity Framework
 - NLog
 - Swagger

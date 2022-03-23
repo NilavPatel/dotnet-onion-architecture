@@ -1,6 +1,4 @@
 using System.Threading.Tasks;
-using MyApp.Application.Interfaces.Repositories;
-using MyApp.Application.Interfaces.Services;
 using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 using MyApp.Domain.Specifications;
@@ -9,6 +7,9 @@ using MyApp.Domain.Enums;
 using MyApp.Domain.Exceptions;
 using System.Linq;
 using MyApp.Application.Models.DTOs;
+using MyApp.Application.Interfaces;
+using MyApp.Domain.Core.Repositories;
+using MyApp.Domain.Core.Services;
 
 namespace MyApp.Application.Services
 {

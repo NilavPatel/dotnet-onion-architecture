@@ -3,12 +3,12 @@ using Xunit;
 using Moq;
 using MyApp.Application.Services;
 using MyApp.Application.Models.Requests;
-using MyApp.Application.Interfaces.Repositories;
-using MyApp.Application.Interfaces.Services;
 using MyApp.Domain.Entities;
 using MyApp.Domain.Enums;
 using MyApp.Domain.Exceptions;
 using MyApp.Domain.Specifications;
+using MyApp.Domain.Core.Repositories;
+using MyApp.Domain.Core.Services;
 
 namespace MyApp.Application.Test.Services
 {
