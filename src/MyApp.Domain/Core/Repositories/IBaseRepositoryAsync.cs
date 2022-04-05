@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MyApp.Domain.Core.Models;
-using MyApp.Domain.Specifications;
+using MyApp.Domain.Core.Specifications;
 
 namespace MyApp.Domain.Core.Repositories
 {

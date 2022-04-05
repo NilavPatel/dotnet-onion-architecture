@@ -6,7 +6,7 @@ using MyApp.Application.Models.Requests;
 using MyApp.Domain.Entities;
 using MyApp.Domain.Enums;
 using MyApp.Domain.Exceptions;
-using MyApp.Domain.Specifications;
+using MyApp.Domain.Core.Specifications;
 using MyApp.Domain.Core.Repositories;
 using MyApp.Domain.Core.Services;
 

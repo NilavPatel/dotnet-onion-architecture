@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Infrastructure.Data;
-using MyApp.Domain.Specifications;
+using MyApp.Domain.Core.Specifications;
 using MyApp.Domain.Core.Models;
 using MyApp.Domain.Core.Repositories;
 

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using MyApp.Domain.Specifications;
+using MyApp.Domain.Core.Specifications;
 using MyApp.Domain.Core.Models;
 
 namespace MyApp.Infrastructure.Repositories

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace MyApp.Domain.Specifications
+namespace MyApp.Domain.Core.Specifications
 {
     public interface ISpecification<T>
     {
