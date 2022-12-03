@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Infrastructure.Data;
@@ -30,7 +29,9 @@ namespace MyApp.Infrastructure.Test.Repositories
                 LastName = "Patel",
                 EmailId = "nilavpatel1992@gmail.com",
                 Password = "Test123",
-                Status = UserStatus.Active
+                Status = UserStatus.Active,
+                CreatedBy = Guid.NewGuid(),
+                CreatedOn = DateTimeOffset.UtcNow
             };
 
             //When

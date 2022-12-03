@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using MyApp.Domain.Core.Models;
 
-namespace MyApp.Domain.Core.Repositories
+namespace MyApp.Application.Core.Repositories
 {
     public interface IUnitOfWork
     {

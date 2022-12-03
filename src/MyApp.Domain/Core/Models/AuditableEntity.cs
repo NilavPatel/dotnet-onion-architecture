@@ -4,9 +4,9 @@ namespace MyApp.Domain.Core.Models
 {
     public class AuditableEntity : BaseEntity
     {
-        public string CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public string LastModifiedBy { get; set; }
-        public DateTime? LastModifiedOn { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTimeOffset CreatedOn { get; set; }
+        public Guid? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedOn { get; set; }
     }
 }

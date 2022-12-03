@@ -1,5 +1,4 @@
-﻿using System;
-using MyApp.Domain.Core.Services;
+﻿using MyApp.Application.Core.Services;
 using NLog.Web;
 
 namespace MyApp.Infrastructure.Services

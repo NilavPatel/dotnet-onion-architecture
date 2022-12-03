@@ -1,14 +1,13 @@
-using System;
 using Xunit;
-using Moq;
 using MyApp.Application.Services;
 using MyApp.Application.Models.Requests;
 using MyApp.Domain.Entities;
 using MyApp.Domain.Enums;
 using MyApp.Domain.Exceptions;
 using MyApp.Domain.Core.Specifications;
-using MyApp.Domain.Core.Repositories;
-using MyApp.Domain.Core.Services;
+using MyApp.Application.Core.Services;
+using MyApp.Application.Core.Repositories;
+using Moq;
 
 namespace MyApp.Application.Test.Services
 {

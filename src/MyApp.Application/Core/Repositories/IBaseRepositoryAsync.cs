@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MyApp.Domain.Core.Models;
 using MyApp.Domain.Core.Specifications;
 
-namespace MyApp.Domain.Core.Repositories
+namespace MyApp.Application.Core.Repositories
 {
     public interface IBaseRepositoryAsync<T> where T : BaseEntity
     {

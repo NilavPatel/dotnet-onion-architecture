@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using MyApp.Application.Core.Repositories;
 using MyApp.Domain.Core.Models;
-using MyApp.Domain.Core.Repositories;
 using MyApp.Infrastructure.Data;
 
 namespace MyApp.Infrastructure.Repositories

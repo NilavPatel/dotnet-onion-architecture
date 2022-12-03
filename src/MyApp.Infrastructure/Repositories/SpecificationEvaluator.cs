@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using MyApp.Domain.Core.Specifications;
 using MyApp.Domain.Core.Models;
 

@@ -1,10 +1,8 @@
 using Xunit;
-using System.Linq;
-using System.Collections.Generic;
 using MyApp.Domain.Specifications;
 using MyApp.Domain.Entities;
-using MyApp.Infrastructure.Repositories;
 using MyApp.Domain.Enums;
+using MyApp.Infrastructure.Repositories;
 
 namespace MyApp.Domain.Test.Specifications
 {

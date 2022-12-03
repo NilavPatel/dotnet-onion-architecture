@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyApp.Domain.Core.Repositories;
-using MyApp.Domain.Core.Services;
+using MyApp.Application.Core.Repositories;
+using MyApp.Application.Core.Services;
 using MyApp.Infrastructure.Data;
 using MyApp.Infrastructure.Repositories;
 using MyApp.Infrastructure.Services;

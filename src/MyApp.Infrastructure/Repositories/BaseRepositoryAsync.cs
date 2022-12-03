@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Infrastructure.Data;
 using MyApp.Domain.Core.Specifications;
 using MyApp.Domain.Core.Models;
-using MyApp.Domain.Core.Repositories;
+using MyApp.Application.Core.Repositories;
 
 namespace MyApp.Infrastructure.Repositories
 {
