@@ -17,16 +17,18 @@
 
 ### Domain Layer:
 
-This layer is not depend on any other layer. This layer contains entities, enums, specifications etc. related to the domain.
-Also define Interfaces for repositories and third party services in this layer.
+This layer does not depend on any other layer. This layer contains entities, enums, specifications etc.
 
 ### Application Layer:
 
-This layer contains business logic, services, service interfaces, request and response models. This layer is depends on domain layer only.
+This layer contains business logic, services, service interfaces, request and response models.  
+Third party service interfaces are also defined in this layer.  
+This layer depends on domain layer.  
 
 ### Infrastructure Layer:
 
-This layer contains database related logic (Repositories and DbContext), and third party library implementation (like a logger and email service). This implementation is based on domain layer.
+This layer contains database related logic (Repositories and DbContext), and third party library implementation (like a logger and email service).  
+This implementation is based on domain and infrastructure layer.
 
 ### Presentation Layer:
 
