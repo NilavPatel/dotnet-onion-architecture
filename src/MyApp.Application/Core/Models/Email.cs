@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MyApp.Application.Core.Models
 {
     public class Email

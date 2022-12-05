@@ -1,5 +1,3 @@
-using System;
-
 namespace MyApp.Domain.Core.Models
 {
     public class AuditableEntity : BaseEntity

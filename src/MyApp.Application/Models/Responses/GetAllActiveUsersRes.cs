@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using MyApp.Application.Models.DTOs;
 
 namespace MyApp.Application.Models.Responses

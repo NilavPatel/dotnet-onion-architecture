@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using MyApp.Application.Models.Requests;
 using MyApp.Application.Models.Responses;
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MyApp.Application.Core.Services
+﻿namespace MyApp.Application.Core.Services
 {
     public interface ILoggerService
     {

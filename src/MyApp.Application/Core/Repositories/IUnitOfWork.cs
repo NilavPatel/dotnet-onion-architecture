@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using MyApp.Domain.Core.Models;
 
 namespace MyApp.Application.Core.Repositories

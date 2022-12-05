@@ -1,5 +1,3 @@
-using System;
-
 namespace MyApp.Application.Models.Responses
 {
     public class ValidateUserRes

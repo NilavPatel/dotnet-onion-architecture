@@ -1,5 +1,3 @@
-using System;
-
 namespace MyApp.Domain.Exceptions
 {
     public class UserNotFoundException : Exception

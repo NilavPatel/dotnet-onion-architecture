@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using MyApp.Infrastructure.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
 var appSettings = new ConfigurationBuilder()
@@ -8,11 +5,6 @@ var appSettings = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
     .Build();
-
-// Add services to the container.
-builder.Services.AddDbContext<MyAppDbContext>(options =>
-    options.UseSqlServer("name=ConnectionStrings:MyAppDatabase",
-    x => x.MigrationsAssembly("MyApp.DbMigrations")));
 
 MyApp.Application.DependencyResolver.DependencyResolverService.Register(builder.Services);
 MyApp.Infrastructure.DependencyResolver.DependencyResolverService.Register(builder.Services, appSettings);
@@ -36,5 +28,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    MyApp.Infrastructure.DependencyResolver.DependencyResolverService.MigrateDatabase(scope.ServiceProvider);
+}
 
 app.Run();

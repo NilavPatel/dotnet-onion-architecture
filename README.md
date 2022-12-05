@@ -40,6 +40,7 @@ Domain model are of 2 types
 
 1. Domain entity (data only)
 	- This model contains only fields
+    - This is an anti pattern used widely. Read blog from Martin Fowler (<a href="https://martinfowler.com/bliki/AnemicDomainModel.html">here</a>)
 
 2. Domain model (data + behaviour)
 	- This model has fields and behaviours. Fields can be modify only within behaviours.
@@ -55,9 +56,11 @@ There are 2 types of validations in DDD:
 
     Model validations can be validated in Application layer or Domain layer.
 
-    - Use DataAnnotation (https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0)
+    - Use DataAnnotation (https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-7.0)
     - Use Guard pattern (https://github.com/NilavPatel/Guard-Pattern)
+        - mostly used when you have single source of truth (validations in aggregate pattern)
     - Use fluent validations pattern (https://docs.fluentvalidation.net/en/latest/aspnet.html)
+        - Used when validating models instead of single properties like request models, commands
 
 2. Business validations
 	- Balance should be more than Withdraw amount
@@ -72,23 +75,36 @@ There are 2 types of validations in DDD:
         - Balance should be more than Withdraw amount
         - User should be active 
     2. Validations against other domain models
-        - User name should not be exist
+        - User name should not be already exist
 
-For Aggregate pattern add both types of validations inside domain layer.
+For Aggregate pattern add both types of validations inside domain layer.  
+  
+Problem occurs when validating domain model against other domain models.  
+  
+- In this case use Func<> methods to pass validations to domain model from Application layer.  
+And run this Func<> from domain models.  
+````csharp
+public WithdrawMoney(double amount, Func<string, bool> isBankAccountActive){
+    if(!isBankAccountActive(BankAccountNumber)){
+        throw new DomainValidationException("Bank account is not in active state");
+    }
+}
+````  
 
-Problem occurs when validating domain model against other domain models.
-
-In this case use Func<> methods to pass validations to domain model from Application layer.
-
-And run this Func<> from domain models.
-
-Otherwise need to validate this type of validations in Application layer.
+- Otherwise pass domain model of other type as parameter and then validate.
+````csharp
+public WithdrawMoney(double amount, BankAccount bankAccount){
+    if(bankAccount.Status != Active){
+        throw new DomainValidationException("Bank account is not in active state");
+    }
+}
+````  
 
 **For more details <a target="_blank" href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice">read</a>**
 
 ### Technologies Used:
 
-- .Net 6
+- .Net 7
 - Entity Framework
 - NLog
 - Swagger
