@@ -20,9 +20,9 @@ namespace MyApp.Infrastructure.Test.Repositories
         }
 
         [Fact]
-        public async void AddAsync_WithValidData_SuccessfullyInsertData()
+        public async void Given_ValidData_When_AddAsync_Then_SuccessfullyInsertData()
         {
-            //Given
+            // Arrange
             var user = new User
             {
                 FirstName = "Nilav",
@@ -34,11 +34,11 @@ namespace MyApp.Infrastructure.Test.Repositories
                 CreatedOn = DateTimeOffset.UtcNow
             };
 
-            //When
+            // Act
             var result = await _unitOfWork.Repository<User>().AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
-            //Then
+            // Assert
             Assert.Equal(result, _myAppDbContext.Users.Find(result.Id));
         }
     }

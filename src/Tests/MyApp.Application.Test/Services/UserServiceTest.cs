@@ -23,9 +23,9 @@ namespace MyApp.Application.Test.Services
         }
 
         [Fact]
-        public async void CreateUser_WithValidData_SuccessfullyCreateUser()
+        public async void Given_WithValidData_When_CreateUser_Then_SuccessfullyCreateUser()
         {
-            //Given
+            // Arrange
             var id = Guid.NewGuid();
             _unitOfWorkMock.Setup(x => x.Repository<User>().AddAsync(It.IsAny<User>()))
                 .ReturnsAsync(new User
@@ -39,7 +39,7 @@ namespace MyApp.Application.Test.Services
                 });
             _unitOfWorkMock.Setup(x => x.SaveChangesAsync()).ReturnsAsync(1);
 
-            //When
+            // Act
             var result = await _userService.CreateUser(new CreateUserReq
             {
                 FirstName = "Nilav",
@@ -49,22 +49,20 @@ namespace MyApp.Application.Test.Services
                 Status = UserStatus.Active
             });
 
-            //Then
+            // Assert
             Assert.NotNull(result);
             Assert.NotNull(result.Data);
             Assert.Equal(id, result.Data.Id);
         }
 
         [Fact]
-        public async void ValidateUser_UserNotExist_ThrowException()
+        public async void Given_UserNotExist_When_ValidateUser_Then_ThrowException()
         {
-            // Given
-            var id = Guid.NewGuid();
-            User user = null;
+            // Arrange
             _unitOfWorkMock.Setup(x => x.Repository<User>().FirstOrDefaultAsync(It.IsAny<ISpecification<User>>()))
-                .ReturnsAsync(user);
+                .ReturnsAsync((User)null);
 
-            // when
+            // Act
             await Assert.ThrowsAsync<UserNotFoundException>(async () => await _userService.ValidateUser(new ValidateUserReq
             {
                 EmailId = "nilavpatel1992@gmail.com",
@@ -73,9 +71,9 @@ namespace MyApp.Application.Test.Services
         }
 
         [Fact]
-        public async void ValidateUser_UserIsNotActive_ThrowException()
+        public async void Given_UserIsNotActive_When_ValidateUser_Then_ThrowException()
         {
-            // Given
+            // Arrange
             var id = Guid.NewGuid();
             User user = new User
             {
@@ -86,10 +84,11 @@ namespace MyApp.Application.Test.Services
                 Password = "Test123",
                 Status = UserStatus.InActive
             };
+
             _unitOfWorkMock.Setup(x => x.Repository<User>().FirstOrDefaultAsync(It.IsAny<ISpecification<User>>()))
                 .ReturnsAsync(user);
 
-            // when
+            // Act
             await Assert.ThrowsAsync<UserIsNotActiveException>(async () => await _userService.ValidateUser(new ValidateUserReq
             {
                 EmailId = "nilavpatel1992@gmail.com",
@@ -98,9 +97,9 @@ namespace MyApp.Application.Test.Services
         }
 
         [Fact]
-        public async void ValidateUser_ValidData_ReturnsResult()
+        public async void Given_ValidData_When_ValidateUser_Then_ReturnsResult()
         {
-            // Given
+            // Arrange
             var id = Guid.NewGuid();
             User user = new User
             {
@@ -111,16 +110,18 @@ namespace MyApp.Application.Test.Services
                 Password = "Test123",
                 Status = UserStatus.Active
             };
+
             _unitOfWorkMock.Setup(x => x.Repository<User>().FirstOrDefaultAsync(It.IsAny<ISpecification<User>>()))
                 .ReturnsAsync(user);
 
-            // when
+            // Act
             var result = await _userService.ValidateUser(new ValidateUserReq
             {
                 EmailId = "nilavpatel1992@gmail.com",
                 Password = "Test123"
             });
 
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(id, result.Id);
         }

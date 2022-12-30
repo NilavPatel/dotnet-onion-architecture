@@ -40,28 +40,28 @@ namespace MyApp.Domain.Test.Specifications
         }
 
         [Fact]
-        public void GetUserByEmailAndPasswordSpec_WithValidData_ReturnValidData()
+        public void Given_ValidData_When_GetUserByEmailAndPasswordSpec_Then_ReturnValidData()
         {
-            //Given
+            // Arrange
             var spec = UserSpecifications.GetUserByEmailAndPasswordSpec("nilavpatel1992@gmail.com", "Test123");
 
-            //When
+            // Act
             var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
 
-            //Then
+            // Assert
             Assert.Equal(1, count);
         }
 
         [Fact]
-        public void GetAllActiveUsersSpec_WithValidData_ReturnValidData()
+        public void Given_ValidData_When_GetAllActiveUsersSpec_Then_ReturnValidData()
         {
-            //Given
+            // Arrange
             var spec = UserSpecifications.GetAllActiveUsersSpec();
 
-            //When
+            // Act
             var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
 
-            //Then
+            // Assert
             Assert.Equal(2, count);
         }
     }
