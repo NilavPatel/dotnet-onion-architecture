@@ -9,8 +9,8 @@ namespace MyApp.Infrastructure.Test.Repositories
 {
     public class BaseRepositoryAsyncTest
     {
-        private MyAppDbContext _myAppDbContext;
-        private UnitOfWork _unitOfWork;
+        private readonly MyAppDbContext _myAppDbContext;
+        private readonly UnitOfWork _unitOfWork;
 
         public BaseRepositoryAsyncTest()
         {

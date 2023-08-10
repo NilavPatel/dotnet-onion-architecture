@@ -10,9 +10,8 @@ namespace MyApp.Domain.Core.Specifications
         Expression<Func<T, object>> OrderBy { get; }
         Expression<Func<T, object>> OrderByDescending { get; }
         Expression<Func<T, object>> GroupBy { get; }
-
         int Take { get; }
         int Skip { get; }
-        bool isPagingEnabled { get; }
+        bool IsPagingEnabled { get; }
     }
 }

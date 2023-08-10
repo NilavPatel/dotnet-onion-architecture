@@ -6,17 +6,16 @@ var appSettings = new ConfigurationBuilder()
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
     .Build();
 
-MyApp.Application.DependencyResolver.DependencyResolverService.Register(builder.Services);
-MyApp.Infrastructure.DependencyResolver.DependencyResolverService.Register(builder.Services, appSettings);
+MyApp.Application.DependencyInjections.ConfigureServices(builder.Services);
+
+MyApp.Infrastructure.DependencyInjections.ConfigureServices(builder.Services, appSettings);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -31,7 +30,7 @@ app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {
-    MyApp.Infrastructure.DependencyResolver.DependencyResolverService.MigrateDatabase(scope.ServiceProvider);
+    MyApp.Infrastructure.DependencyInjections.MigrateDatabase(scope.ServiceProvider);
 }
 
 app.Run();

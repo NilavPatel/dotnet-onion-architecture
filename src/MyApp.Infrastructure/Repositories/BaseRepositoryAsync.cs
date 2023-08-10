@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MyApp.Infrastructure.Data;
 using MyApp.Domain.Core.Specifications;
 using MyApp.Domain.Core.Models;
-using MyApp.Application.Core.Repositories;
+using MyApp.Domain.Core.Repositories;
 
 namespace MyApp.Infrastructure.Repositories
 {
@@ -15,7 +15,7 @@ namespace MyApp.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T?> GetByIdAsync(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
@@ -30,7 +30,7 @@ namespace MyApp.Infrastructure.Repositories
             return await ApplySpecification(spec).ToListAsync();
         }
 
-        public async Task<T> FirstOrDefaultAsync(ISpecification<T> spec)
+        public async Task<T?> FirstOrDefaultAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).FirstOrDefaultAsync();
         }

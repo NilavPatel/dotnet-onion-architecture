@@ -6,16 +6,16 @@ using MyApp.Domain.Enums;
 using MyApp.Domain.Exceptions;
 using MyApp.Domain.Core.Specifications;
 using MyApp.Application.Core.Services;
-using MyApp.Application.Core.Repositories;
 using Moq;
+using MyApp.Domain.Core.Repositories;
 
 namespace MyApp.Application.Test.Services
 {
     public class UserServiceTest
     {
-        private Mock<IUnitOfWork> _unitOfWorkMock = new Mock<IUnitOfWork>();
-        private Mock<ILoggerService> _loggerMock = new Mock<ILoggerService>();
-        private UserService _userService;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock = new Mock<IUnitOfWork>();
+        private readonly Mock<ILoggerService> _loggerMock = new Mock<ILoggerService>();
+        private readonly UserService _userService;
 
         public UserServiceTest()
         {

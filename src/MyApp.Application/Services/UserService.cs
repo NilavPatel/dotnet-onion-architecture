@@ -6,8 +6,8 @@ using MyApp.Domain.Enums;
 using MyApp.Domain.Exceptions;
 using MyApp.Application.Models.DTOs;
 using MyApp.Application.Interfaces;
-using MyApp.Application.Core.Repositories;
 using MyApp.Application.Core.Services;
+using MyApp.Domain.Core.Repositories;
 
 namespace MyApp.Application.Services
 {
@@ -32,22 +32,34 @@ namespace MyApp.Application.Services
                 Password = req.Password,
                 Status = req.Status
             });
+
             await _unitOfWork.SaveChangesAsync();
+
+            _loggerService.LogInfo("New user created");
+
             return new CreateUserRes() { Data = new UserDTO(user) };
         }
 
         public async Task<ValidateUserRes> ValidateUser(ValidateUserReq req)
         {
             var validateUserSpec = UserSpecifications.GetUserByEmailAndPasswordSpec(req.EmailId, req.Password);
+
             var user = await _unitOfWork.Repository<User>().FirstOrDefaultAsync(validateUserSpec);
+
             if (user == null)
             {
+                _loggerService.LogInfo("User not found");
+
                 throw new UserNotFoundException();
             }
+
             if (user.Status != UserStatus.Active)
             {
+                _loggerService.LogInfo("User not active");
+
                 throw new UserIsNotActiveException();
             }
+
             return new ValidateUserRes()
             {
                 Id = user.Id,
@@ -59,6 +71,7 @@ namespace MyApp.Application.Services
         public async Task<GetAllActiveUsersRes> GetAllActiveUsers()
         {
             var activeUsersSpec = UserSpecifications.GetAllActiveUsersSpec();
+
             var users = await _unitOfWork.Repository<User>().ListAsync(activeUsersSpec);
 
             return new GetAllActiveUsersRes()

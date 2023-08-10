@@ -1,6 +1,6 @@
 using MyApp.Domain.Core.Models;
 
-namespace MyApp.Application.Core.Repositories
+namespace MyApp.Domain.Core.Repositories
 {
     public interface IUnitOfWork
     {

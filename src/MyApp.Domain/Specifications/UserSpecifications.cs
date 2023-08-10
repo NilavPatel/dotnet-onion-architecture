@@ -8,12 +8,12 @@ namespace MyApp.Domain.Specifications
     {
         public static BaseSpecification<User> GetUserByEmailAndPasswordSpec(string emailId, string password)
         {
-            return new BaseSpecification<User>(x => x.EmailId == emailId && x.Password == password);
+            return new BaseSpecification<User>(x => x.EmailId == emailId && x.Password == password && x.IsDeleted == false);
         }
 
         public static BaseSpecification<User> GetAllActiveUsersSpec()
         {
-            return new BaseSpecification<User>(x => x.Status == UserStatus.Active);
+            return new BaseSpecification<User>(x => x.Status == UserStatus.Active && x.IsDeleted == false);
         }
     }
 }

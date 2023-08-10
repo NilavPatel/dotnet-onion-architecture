@@ -2,13 +2,13 @@ using Xunit;
 using MyApp.Domain.Specifications;
 using MyApp.Domain.Entities;
 using MyApp.Domain.Enums;
-using MyApp.Infrastructure.Repositories;
+using MyApp.Domain.Test.Helpers;
 
 namespace MyApp.Domain.Test.Specifications
 {
     public class UserSpecificationsTest
     {
-        private List<User> _users;
+        private readonly List<User> _users;
         public UserSpecificationsTest()
         {
             _users = new List<User>{
@@ -46,7 +46,7 @@ namespace MyApp.Domain.Test.Specifications
             var spec = UserSpecifications.GetUserByEmailAndPasswordSpec("nilavpatel1992@gmail.com", "Test123");
 
             // Act
-            var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
+            var count = SpecificationEvaluatorTestHelper<User>.GetQuery(_users.AsQueryable(), spec).Count();
 
             // Assert
             Assert.Equal(1, count);
@@ -59,7 +59,7 @@ namespace MyApp.Domain.Test.Specifications
             var spec = UserSpecifications.GetAllActiveUsersSpec();
 
             // Act
-            var count = SpecificationEvaluator<User>.GetQuery(_users.AsQueryable(), spec).Count();
+            var count = SpecificationEvaluatorTestHelper<User>.GetQuery(_users.AsQueryable(), spec).Count();
 
             // Assert
             Assert.Equal(2, count);

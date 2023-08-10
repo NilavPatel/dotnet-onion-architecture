@@ -1,10 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using MyApp.Domain.Core.Specifications;
 using MyApp.Domain.Core.Models;
 
-namespace MyApp.Infrastructure.Repositories
+namespace MyApp.Domain.Test.Helpers
 {
-    public class SpecificationEvaluator<T> where T : BaseEntity
+    public class SpecificationEvaluatorTestHelper<T> where T : BaseEntity
     {
         public static IQueryable<T> GetQuery(IQueryable<T> inputQuery, ISpecification<T> specification)
         {
@@ -16,13 +15,13 @@ namespace MyApp.Infrastructure.Repositories
                 query = query.Where(specification.Criteria);
             }
 
-            // Includes all expression-based includes
-            query = specification.Includes.Aggregate(query,
-                                    (current, include) => current.Include(include));
+            // // Includes all expression-based includes
+            // query = specification.Includes.Aggregate(query,
+            //                         (current, include) => current.Include(include));
 
-            // Include any string-based include statements
-            query = specification.IncludeStrings.Aggregate(query,
-                                    (current, include) => current.Include(include));
+            // // Include any string-based include statements
+            // query = specification.IncludeStrings.Aggregate(query,
+            //                         (current, include) => current.Include(include));
 
             // Apply ordering if expressions are set
             if (specification.OrderBy != null)

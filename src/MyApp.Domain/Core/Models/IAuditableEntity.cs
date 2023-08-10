@@ -1,6 +1,6 @@
 namespace MyApp.Domain.Core.Models
 {
-    public class AuditableEntity : BaseEntity
+    public interface IAuditableEntity
     {
         public Guid CreatedBy { get; set; }
         public DateTimeOffset CreatedOn { get; set; }

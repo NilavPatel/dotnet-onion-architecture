@@ -17,7 +17,8 @@
 
 ### Domain Layer:
 
-This layer does not depend on any other layer. This layer contains entities, enums, specifications etc.
+This layer does not depend on any other layer. This layer contains entities, enums, specifications etc.  
+Add repository and unit of work contracts in this layer.
 
 ### Application Layer:
 
@@ -110,3 +111,5 @@ public WithdrawMoney(double amount, BankAccount bankAccount){
 - Swagger
 - Xunit
 - Moq
+- Generic Repository Pattern
+- Specification pattern
