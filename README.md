@@ -105,7 +105,8 @@ public WithdrawMoney(double amount, BankAccount bankAccount){
 
 ### Technologies Used:
 
-- .Net 7
+- .Net 8
+- Rest API
 - Entity Framework
 - NLog
 - Swagger
