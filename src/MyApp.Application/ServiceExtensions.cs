@@ -4,9 +4,9 @@ using MyApp.Application.Services;
 
 namespace MyApp.Application
 {
-    public static class DependencyInjections
+    public static class ServiceExtensions
     {
-        public static void ConfigureServices(IServiceCollection services)
+        public static void ConfigureApplication(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
         }
