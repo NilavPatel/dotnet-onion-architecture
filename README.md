@@ -28,8 +28,8 @@ This layer depends on domain layer.
 
 ### Infrastructure Layer:
 
-This layer contains database related logic (Repositories and DbContext), and third party library implementation (like a logger and email service).  
-This implementation is based on domain and infrastructure layer.
+This layer contains database related logic (Repositories and DbContext), and third party library implementation (like logger and email service).  
+This implementation is based on domain and application layer.
 
 ### Presentation Layer:
 
@@ -105,7 +105,8 @@ public WithdrawMoney(double amount, BankAccount bankAccount){
 
 ### Technologies Used:
 
-- .Net 7
+- .Net 8
+- Rest API
 - Entity Framework
 - NLog
 - Swagger

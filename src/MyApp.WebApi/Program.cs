@@ -1,3 +1,6 @@
+using MyApp.Application;
+using MyApp.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var appSettings = new ConfigurationBuilder()
@@ -6,15 +9,20 @@ var appSettings = new ConfigurationBuilder()
     .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
     .Build();
 
-MyApp.Application.DependencyInjections.ConfigureServices(builder.Services);
+builder.Services.ConfigureApplication();
 
-MyApp.Infrastructure.DependencyInjections.ConfigureServices(builder.Services, appSettings);
+builder.Services.ConfigureInfrastructure();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    scope.ServiceProvider.MigrateDatabase();
+}
 
 if (app.Environment.IsDevelopment())
 {
@@ -27,10 +35,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-using (var scope = app.Services.CreateScope())
-{
-    MyApp.Infrastructure.DependencyInjections.MigrateDatabase(scope.ServiceProvider);
-}
 
 app.Run();
